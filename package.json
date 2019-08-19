@@ -1,19 +1,17 @@
 {
-  "name": "language-forth",
-  "version": "0.2.6",
-  "description": "Forth language support for Atom",
+  "name": "language-forth-multiuser",
+  "version": "0.0.0",
+  "description": "Multi-user forth language syntax highlighting for Atom",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mpgirro/atom-language-forth"
+    "url": "https://github.com/inutt/atom-language-forth-multiuser"
   },
   "bugs": {
-    "url": "https://github.com/mpgirro/atom-language-forth/issues"
+    "url": "https://github.com/inutt/atom-language-forth-multiuser/issues"
   },
-  "homepage": "https://github.com/mpgirro/atom-language-forth",
-  "readme": "# Forth language support for Atom\n\nAdds syntax highlighting for Forth files to Atom.",
-  "readmeFilename": "README.md",
+  "homepage": "https://github.com/inutt/atom-language-forth-multiuser",
   "author": {
-    "name": "Maximilian Irro"
+    "name": "Inutt"
   },
   "license": "MIT",
   "engines": {
