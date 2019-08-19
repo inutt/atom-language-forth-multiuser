@@ -1,6 +1,6 @@
 {
   "name": "language-forth-multiuser",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Multi-user forth language syntax highlighting for Atom",
   "repository": {
     "type": "git",
