@@ -22,6 +22,7 @@
         'end': '\\)'
         'name': 'comment.block.muf'
         'contentName': 'comment.block.muf'
+        patterns: [{ include: '#comment' }]
       }
     ]
   'constant':
@@ -113,7 +114,7 @@
       }
       {
         # String functions
-        'match': '(?<=^|\\s)(?i:(ANSI_MIDSTR|ANSI_STRCUT|ANSI_STRIP|ANSI_STRLEN|FMTSTRING|INTOSTR|MIDSTR|STRCAT|STRCMP|STRCUT|STRINGCMP|STRINGPFX|STRLEN|STRPFX|SUBST))(?=\\s)'
+        'match': '(?<=^|\\s)(?i:(ANSI_MIDSTR|ANSI_STRCUT|ANSI_STRIP|ANSI_STRLEN|FMTSTRING|INTOSTR|MIDSTR|STRCAT|STRCMP|STRCUT|STRINGCMP|STRINGPFX|STRLEN|STRPFX|SUBST|TOLOWER|TOUPPER))(?=\\s)'
         'name': 'keyword.operator.muf'
       }
       {
@@ -123,7 +124,7 @@
       }
       {
         # Database functions
-        'match': '(?<=^|\\s)(?i:(ADDPROP|BLESSPROP|ENVPROP|ENVPROPSTR|GETPROP|GETPROPFVAL|GETPROPSTR|GETPROPVAL|NEXTPROP|PARSEPROP|PARSEPROPEX|REMOVE_PROP|SETPROP|UNBLESSPROP|GETSTAT|GETSTATSTR|GETSTATNULLSTR|GETSTATINT|DBREF))(?=\\s)'
+        'match': '(?<=^|\\s)(?i:(ADDPROP|BLESSPROP|ENVPROP|ENVPROPSTR|GETPROP|GETPROPFVAL|GETPROPSTR|GETPROPVAL|NEXTPROP|PARSEPROP|PARSEPROPEX|REMOVE_PROP|SETPROP|UNBLESSPROP|GETSTAT|GETSTATSTR|GETSTATNULLSTR|GETSTATINT|DBREF|PROG))(?=\\s)'
         'name': 'keyword.database.muf'
       }
       {
