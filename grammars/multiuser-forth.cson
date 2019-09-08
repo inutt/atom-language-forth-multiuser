@@ -1,193 +1,188 @@
 'fileTypes': [
-  'muf'
+	'muf'
 ]
 'foldingStartMarker': '/\\*\\*|\\{\\s*$'
 'foldingStopMarker': '\\*\\*/|^\\s*\\}'
 'name': 'Multi User Forth'
 'patterns': [
-  {
-    'include': '#muf'
-  }
+	{
+		'include': '#muf'
+	}
 ]
 'repository':
-  'comment':
-    'patterns': [
-      {
-        'comment': 'ANSI line comment'
-        'match': '(?<=^|\\s)(\\( [^)]*\\))'
-        'name': 'comment.line.muf'
-      }
-      {
-        'begin': '\\('
-        'end': '\\)'
-        'name': 'comment.block.muf'
-        'contentName': 'comment.block.muf'
-        patterns: [{ include: '#comment' }]
-      }
-    ]
-  'constant':
-    'patterns': [
-      {
-        'match': '(?i:(?<=^|\\s)(ME|LOCATION|COMMAND|SORTTYPE_\\w+)(?=\\s))'
-        'name': 'constant.language.muf'
-      }
-      {
-        'match': '(?<=^|\\s)([$#%]?[-+]?[0-9]+(\\.[0-9]*e(-?[0-9]+)|\\.?[0-9a-fA-F]*))(?=\\s)'
-        'name': 'constant.numeric.muf'
-      }
-      ]
-  'muf':
-    'patterns': [
-      {
-        'include': '#constant'
-      }
-      {
-        'include': '#comment'
-      }
-      {
-        'include': '#string'
-      }
-      {
-        'include': '#array'
-      }
-      {
-        'include': '#operators'
-      }
-      {
-        'include': '#word'
-      }
-      {
-        'include': '#variable'
-      }
-      {
-        'include': '#storage'
-      }
-      {
-        'include': '#word-def'
-      }
-    ]
-  'storage':
-    'patterns': [
-      {
-        'comment': ''
-        'match': '(?<=^|\\s)(?i:(VARIABLE|VAR!|VAR|!|@))(?=\\s)'
-        'name': 'storage.muf'
-      }
-    ]
-  'string':
-    'patterns': [
-      {
-        'comment': ''
-        'match': '("[^"]*")'
-        'name': 'string.muf'
-      }
-    ]
-  'array':
-    'patterns': [
-      {
-        'comment': ''
-        'match': '(?<=^|\\s)({)(?=\\s)|(?<=^|\\s)(}(?:(cat|list|tell|otell|atell|dict))?)(?:\\s+|\\s*$)'
-        'name': 'constant.other.symbol.muf'
-      }
-    ]
-  'operators':
-    'patterns': [
-        match: '(?:^\\s*|\\s+)(%|\\*|\\+|\\+\\+|-|--|<|<=|=|>|>=)(?:\\s+|\\s*$)'
-        name: 'keyword.operator.muf'
-    ]
-  'word':
-    'patterns': [
-      {
-        # Stack functions
-        'match': '(?<=^|\\s)(?i:(NIP|ROT|SWAP|DUP|OVER|PICK|DUPN|\\?DUP|DEPTH|POP|POPN|PUT|REVERSE|ROTATE))(?=\\s)'
-        'name': 'keyword.stack.muf'
-      }
-      {
-        # IO functions
-        'match': '(?<=^|\\s)(?i:(notify))(?=\\s)'
-        'name': 'keyword.stack.muf'
-      }
-      {
-        # Maths functions
-        'match': '(?<=^|\\s)(?i:(ABS|ACOS|AND|CEIL|FLOOR|FMOD|FRAND|NOT|OR|PI|POW|SIGN|SIN|TAN|XOR|ASIN|ATAN|ATAN2|COS|LOG|LOG10|INT))(?=\\s)'
-        'name': 'keyword.operator.muf'
-      }
-      {
-        # String functions
-        'match': '(?<=^|\\s)(?i:(ANSI_MIDSTR|ANSI_STRCUT|ANSI_STRIP|ANSI_STRLEN|FMTSTRING|INTOSTR|MIDSTR|STRCAT|STRCMP|STRCUT|STRINGCMP|STRINGPFX|STRLEN|STRPFX|SUBST|TOLOWER|TOUPPER))(?=\\s)'
-        'name': 'keyword.operator.muf'
-      }
-      {
-        # Array functions
-        'match': '(?<=^|\\s)(?i:(ARRAY_APPENDITEM|ARRAY_COMPARE|ARRAY_COUNT|ARRAY_CUT|ARRAY_DELITEM|ARRAY_DELRANGE|ARRAY_DIFF|ARRAY_EXCLUDEVAL|ARRAY_EXPLODE|ARRAY_EXTRACT|ARRAY_FILTER_FLAGS|ARRAY_FILTER_PROP|ARRAY_FINDVAL|ARRAY_FIRST|ARRAY_FMTSTRINGS|ARRAY_GET_IGNORELIST|ARRAY_GET_PROPDIRS|ARRAY_GET_PROPLIST|ARRAY_GET_PROPVALS|ARRAY_GET_REFLIST|ARRAY_GETITEM|ARRAY_GETRANGE|ARRAY_INSERTITEM|ARRAY_INSERTRANGE|ARRAY_INTERPRET|ARRAY_INTERSECT|ARRAY_JOIN|ARRAY_KEYS|ARRAY_LAST|ARRAY_MAKE|ARRAY_MAKE_DICT|ARRAY_MATCHKEY|ARRAY_MATCHVAL|ARRAY_NDIFF|ARRAY_NESTED_DEL|ARRAY_NESTED_GET|ARRAY_NESTED_SET|ARRAY_NEXT|ARRAY_NINTERSECT|ARRAY_NOTIFY|ARRAY_NUNION|ARRAY_PREV|ARRAY_PUT_PROPLIST|ARRAY_PUT_PROPVALS|ARRAY_PUT_REFLIST|ARRAY_REVERSE|ARRAY_SETITEM|ARRAY_SETRANGE|ARRAY_SORT|ARRAY_SORT_INDEXED|ARRAY_UNION|ARRAY_VALS))(?=\\s)'
-        'name': 'keyword.array.muf'
-      }
-      {
-        # Database functions
-        'match': '(?<=^|\\s)(?i:(ADDPROP|BLESSPROP|ENVPROP|ENVPROPSTR|GETPROP|GETPROPFVAL|GETPROPSTR|GETPROPVAL|NEXTPROP|PARSEPROP|PARSEPROPEX|REMOVE_PROP|SETPROP|UNBLESSPROP|GETSTAT|GETSTATSTR|GETSTATNULLSTR|GETSTATINT|DBREF|PROG))(?=\\s)'
-        'name': 'keyword.database.muf'
-      }
-      {
-        # Control words
-        'match': '(?<=^|\\s)(?i:(BEGIN|IF|ELSE|THEN|FOR|FOREACH|REPEAT|UNTIL|WHILE|CONTINUE|BREAK|CASE|WHEN|END|DEFAULT|ENDCASE|EXIT))(?=\\s)'
-        'name': 'keyword.control.muf'
-      }
-      {
-        # Compiler directives
-        'match': '^\\s*(?i:(\\$INCLUDE|\\$DEF|\\$PUBDEF|\\$LIBDEF|\\$UNDEF|\\$VERSION|\\$AUTHOR|\\$CLEARDEFS|\\$DEFINE|\\$ECHO|\\$IFCANCALL|\\$IFDEF|\\$ELSE|\\$ENDIF|\\$IFLIB|\\$IFLIBVER|\\$IFNCANCALL|$IFNDEF|\\$IFNLIB|\\$IFNLIBVER|\\$IFNVER|\\$IFVER|\\$LIB-VERSION))(?=\\s)'
-        'name': 'keyword.other.compiler.muf'
-      }
-      {
-        # Library functions I'm including for convenience
-        'match': '(?<=^|\\s)(?i:(pretty|toint|smatch|\\.tell|\\.otell|tellhere|mlevel|name|location))(?=\\s)'
-        'name': 'support.function.muf'
-      }
-    ]
-  'word-def':
+	'comment':
+		'patterns': [
+			{
+				'begin': '\\('
+				'end': '\\)'
+				'name': 'comment.block.muf'
+				'contentName': 'comment.block.muf'
+				'patterns': [{ include: '#comment' }]
+			}
+		]
+	'constant':
+		'patterns': [
+			{
+				'match': '(?i:(?<=^|\\s)(ME|LOCATION|COMMAND|SORTTYPE_\\w+)(?=\\s))'
+				'name': 'constant.language.muf'
+			}
+			{
+				'match': '(?<=^|\\s)([$#%]?[-+]?[0-9]+(\\.[0-9]*e(-?[0-9]+)|\\.?[0-9a-fA-F]*))(?=\\s)'
+				'name': 'constant.numeric.muf'
+			}
+			]
+	'muf':
+		'patterns': [
+			{
+				'include': '#constant'
+			}
+			{
+				'include': '#comment'
+			}
+			{
+				'include': '#string'
+			}
+			{
+				'include': '#array'
+			}
+			{
+				'include': '#operators'
+			}
+			{
+				'include': '#word'
+			}
+			{
+				'include': '#variable'
+			}
+			{
+				'include': '#storage'
+			}
+			{
+				'include': '#word-def'
+			}
+		]
+	'storage':
+		'patterns': [
+			{
+				'comment': ''
+				'match': '(?<=^|\\s)(?i:(VARIABLE|VAR!|VAR|!|@))(?=\\s)'
+				'name': 'storage.muf'
+			}
+		]
+	'string':
+		'patterns': [
+			{
+				'comment': ''
+				'match': '("[^"]*")'
+				'name': 'string.muf'
+			}
+		]
+	'array':
+		'patterns': [
+			{
+				'comment': ''
+				'match': '(?<=^|\\s)({)(?=\\s)|(?<=^|\\s)(}(?:(cat|list|tell|otell|atell|dict))?)(?:\\s+|\\s*$)'
+				'name': 'constant.other.symbol.muf'
+			}
+		]
+	'operators':
+		'patterns': [
+				match: '(?:^\\s*|\\s+)(%|\\*|\\+|\\+\\+|-|--|<|<=|=|>|>=)(?:\\s+|\\s*$)'
+				name: 'keyword.operator.muf'
+		]
+	'word':
+		'patterns': [
+			{
+				# Stack functions
+				'match': '(?<=^|\\s)(?i:(NIP|ROT|SWAP|DUP|OVER|PICK|DUPN|\\?DUP|DEPTH|POP|POPN|PUT|REVERSE|ROTATE))(?=\\s)'
+				'name': 'keyword.stack.muf'
+			}
+			{
+				# IO functions
+				'match': '(?<=^|\\s)(?i:(notify|ansi_notify|ansi_notify_except))(?=\\s)'
+				'name': 'keyword.stack.muf'
+			}
+			{
+				# Maths functions
+				'match': '(?<=^|\\s)(?i:(ABS|ACOS|AND|CEIL|FLOOR|FMOD|FRAND|NOT|OR|PI|POW|SIGN|SIN|TAN|XOR|ASIN|ATAN|ATAN2|COS|LOG|LOG10|INT))(?=\\s)'
+				'name': 'keyword.operator.muf'
+			}
+			{
+				# String functions
+				'match': '(?<=^|\\s)(?i:(ANSI_MIDSTR|ANSI_STRCUT|ANSI_STRIP|ANSI_STRLEN|EXPLODE|EXPLODE_ARRAY|FMTSTRING|INTOSTR|MIDSTR|STRCAT|STRCMP|STRCUT|STRINGCMP|STRINGPFX|STRLEN|STRPFX|SUBST|TOLOWER|TOUPPER))(?=\\s)'
+				'name': 'keyword.operator.muf'
+			}
+			{
+				# Array functions
+				'match': '(?<=^|\\s)(?i:(ARRAY_APPENDITEM|ARRAY_COMPARE|ARRAY_COUNT|ARRAY_CUT|ARRAY_DELITEM|ARRAY_DELRANGE|ARRAY_DIFF|ARRAY_EXCLUDEVAL|ARRAY_EXPLODE|ARRAY_EXTRACT|ARRAY_FILTER_FLAGS|ARRAY_FILTER_PROP|ARRAY_FINDVAL|ARRAY_FIRST|ARRAY_FMTSTRINGS|ARRAY_GET_IGNORELIST|ARRAY_GET_PROPDIRS|ARRAY_GET_PROPLIST|ARRAY_GET_PROPVALS|ARRAY_GET_REFLIST|ARRAY_GETITEM|ARRAY_GETRANGE|ARRAY_INSERTITEM|ARRAY_INSERTRANGE|ARRAY_INTERPRET|ARRAY_INTERSECT|ARRAY_JOIN|ARRAY_KEYS|ARRAY_LAST|ARRAY_MAKE|ARRAY_MAKE_DICT|ARRAY_MATCHKEY|ARRAY_MATCHVAL|ARRAY_NDIFF|ARRAY_NESTED_DEL|ARRAY_NESTED_GET|ARRAY_NESTED_SET|ARRAY_NEXT|ARRAY_NINTERSECT|ARRAY_NOTIFY|ARRAY_NUNION|ARRAY_PREV|ARRAY_PUT_PROPLIST|ARRAY_PUT_PROPVALS|ARRAY_PUT_REFLIST|ARRAY_REVERSE|ARRAY_SETITEM|ARRAY_SETRANGE|ARRAY_SORT|ARRAY_SORT_INDEXED|ARRAY_UNION|ARRAY_VALS))(?=\\s)'
+				'name': 'keyword.array.muf'
+			}
+			{
+				# Database functions
+				'match': '(?<=^|\\s)(?i:(ADDPROP|BLESSPROP|ENVPROP|ENVPROPSTR|GETPROP|GETPROPFVAL|GETPROPSTR|GETPROPVAL|NEXTPROP|PARSEPROP|PARSEPROPEX|REMOVE_PROP|SETPROP|UNBLESSPROP|GETSTAT|GETSTATSTR|GETSTATNULLSTR|GETSTATINT|DBREF|PROG|GETSTATFLOAT))(?=\\s)'
+				'name': 'keyword.database.muf'
+			}
+			{
+				# Control words
+				'match': '(?<=^|\\s)(?i:(BEGIN|IF|ELSE|THEN|FOR|FOREACH|REPEAT|UNTIL|WHILE|CONTINUE|BREAK|CASE|WHEN|END|DEFAULT|ENDCASE|EXIT))(?=\\s)'
+				'name': 'keyword.control.muf'
+			}
+			{
+				# Compiler directives
+				'match': '^\\s*(?i:(\\$INCLUDE|\\$DEF|\\$PUBDEF|\\$LIBDEF|\\$UNDEF|\\$VERSION|\\$AUTHOR|\\$CLEARDEFS|\\$DEFINE|\\$ECHO|\\$IFCANCALL|\\$IFDEF|\\$ELSE|\\$ENDIF|\\$IFLIB|\\$IFLIBVER|\\$IFNCANCALL|$IFNDEF|\\$IFNLIB|\\$IFNLIBVER|\\$IFNVER|\\$IFVER|\\$LIB-VERSION))(?=\\s)'
+				'name': 'keyword.other.compiler.muf'
+			}
+			{
+				# Library functions I'm including for convenience
+				'match': '(?<=^|\\s)(?i:(pretty|toint|smatch|\\.tell|\\.otell|tellhere|mlevel|name|location))(?=\\s)'
+				'name': 'support.function.muf'
+			}
+		]
+	'word-def':
 #    'begin': '(^:|\\s:)\\s(\\S+)(\\[)\\s(?:(\\S+)\\s)*(--)\\s(?:(\\S+)\\s)*(\\])'
-    'begin': '(^\\s*:|\\s+:)\\s([^\\s\\[]+)(?:(\\[)\\s(.*?)(--)\\s(.*?)(\\]))?'
-    'beginCaptures':
-      '1':
-        'name': 'keyword.other.compile-only.muf'
-      '2':
-        'name': 'entity.name.function.muf'
-      '3':
-        'name': 'punctuation.definition.parameters.muf'
-      '4':
-        'name': 'keyword.other.compile-only.muf'
-      '5':
-        'name': 'punctuation.definition.parameters.muf'
-      '6':
-        'name': 'keyword.other.compile-only.muf'
-    'end': '(;(?i:CODE)?)'
-    'endCaptures':
-      '0':
-        'name': 'keyword.other.compile-only.muf'
-    'name': 'meta.block.muf'
-    'patterns': [
-      {
-        'include': '#constant'
-      }
-      {
-        'include': '#comment'
-      }
-      {
-        'include': '#string'
-      }
-      {
-        'include': '#array'
-      }
-      {
-        'include': '#operators'
-      }
-      {
-        'include': '#word'
-      }
-      {
-        'include': '#variable'
-      }
-      {
-        'include': '#storage'
-      }
-    ]
+		'begin': '(^\\s*:|\\s+:)\\s([^\\s\\[]+)(?:(\\[)\\s(.*?)(--)\\s(.*?)(\\]))?'
+		'beginCaptures':
+			'1':
+				'name': 'keyword.other.compile-only.muf'
+			'2':
+				'name': 'entity.name.function.muf'
+			'3':
+				'name': 'punctuation.definition.parameters.muf'
+			'4':
+				'name': 'keyword.other.compile-only.muf'
+			'5':
+				'name': 'punctuation.definition.parameters.muf'
+			'6':
+				'name': 'keyword.other.compile-only.muf'
+		'end': '(;(?i:CODE)?)'
+		'endCaptures':
+			'0':
+				'name': 'keyword.other.compile-only.muf'
+		'name': 'meta.block.muf'
+		'patterns': [
+			{
+				'include': '#constant'
+			}
+			{
+				'include': '#comment'
+			}
+			{
+				'include': '#string'
+			}
+			{
+				'include': '#array'
+			}
+			{
+				'include': '#operators'
+			}
+			{
+				'include': '#word'
+			}
+			{
+				'include': '#variable'
+			}
+			{
+				'include': '#storage'
+			}
+		]
 'scopeName': 'source.forth.multiuser'
