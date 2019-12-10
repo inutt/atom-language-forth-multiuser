@@ -5,3 +5,5 @@ Syntax highlightning for the [Multi-User Forth programming language](https://en.
 Install this package via the Settings Pane or by using the Atom Package Manager:
 
     apm install language-forth-multiuser
+
+![Screenshot of syntax highlighting in action](syntax_highlighting.png)

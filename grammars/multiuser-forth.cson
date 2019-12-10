@@ -23,14 +23,21 @@
 	'constant':
 		'patterns': [
 			{
-				'match': '(?i:(?<=^|\\s)(ME|LOCATION|COMMAND|SORTTYPE_\\w+)(?=\\s))'
+				# Language constants
+				'match': '(?i:(?<=^|\\s)(ME|LOCATION|COMMAND|SORTTYPE_\\w+|REG_\\w+)(?=\\s))'
 				'name': 'constant.language.muf'
 			}
 			{
+				# Numeric constants
 				'match': '(?<=^|\\s)([$#%]?[-+]?[0-9]+(\\.[0-9]*e(-?[0-9]+)|\\.?[0-9a-fA-F]*))(?=\\s)'
 				'name': 'constant.numeric.muf'
 			}
-			]
+			{
+				# Language constants
+				'match': '(?:(?<=^|\\s)([A-Z_0-9]+)(?=\\s))'
+				'name': 'constant.language.muf'
+			}
+		]
 	'muf':
 		'patterns': [
 			{
@@ -81,13 +88,13 @@
 		'patterns': [
 			{
 				'comment': ''
-				'match': '(?<=^|\\s)({)(?=\\s)|(?<=^|\\s)(}(?:(cat|list|tell|otell|atell|dict))?)(?:\\s+|\\s*$)'
+				'match': '(?<=^|\\s)({)(?=\\s)|(?<=^|\\s)(}(?:(cat|array|list|tell|otell|atell|dict))?)(?:\\s+|\\s*$)'
 				'name': 'constant.other.symbol.muf'
 			}
 		]
 	'operators':
 		'patterns': [
-				match: '(?:^\\s*|\\s+)(%|\\*|\\+|\\+\\+|-|--|<|<=|=|>|>=)(?:\\s+|\\s*$)'
+				match: '(?:^\\s*|\\s+)(%|\\*|/|\\+|\\+\\+|-|--|<|<=|=|>|>=)(?:\\s+|\\s*$)'
 				name: 'keyword.operator.muf'
 		]
 	'word':
@@ -99,7 +106,7 @@
 			}
 			{
 				# IO functions
-				'match': '(?<=^|\\s)(?i:(notify|ansi_notify|ansi_notify_except))(?=\\s)'
+				'match': '(?<=^|\\s)(?i:(notify|ansi_notify|notify_except|ansi_notify_except|notify_exclude|ansi_notify_exclude|tread|.tell|.otell|.atell|timefmt))(?=\\s)'
 				'name': 'keyword.stack.muf'
 			}
 			{
@@ -109,7 +116,7 @@
 			}
 			{
 				# String functions
-				'match': '(?<=^|\\s)(?i:(ANSI_MIDSTR|ANSI_STRCUT|ANSI_STRIP|ANSI_STRLEN|EXPLODE|EXPLODE_ARRAY|FMTSTRING|INTOSTR|MIDSTR|STRCAT|STRCMP|STRCUT|STRINGCMP|STRINGPFX|STRLEN|STRPFX|SUBST|TOLOWER|TOUPPER))(?=\\s)'
+				'match': '(?<=^|\\s)(?i:(ANSI_MIDSTR|ANSI_STRCUT|ANSI_STRIP|ANSI_STRLEN|EXPLODE|EXPLODE_ARRAY|FMTSTRING|INTOSTR|MIDSTR|STRCAT|STRCMP|STRCUT|STRINGCMP|STRINGPFX|STRLEN|STRPFX|SUBST|TOLOWER|TOUPPER|REGEXP|REGMATCH|SPLIT|RSPLIT|STRIP))(?=\\s)'
 				'name': 'keyword.operator.muf'
 			}
 			{
@@ -119,7 +126,7 @@
 			}
 			{
 				# Database functions
-				'match': '(?<=^|\\s)(?i:(ADDPROP|BLESSPROP|ENVPROP|ENVPROPSTR|GETPROP|GETPROPFVAL|GETPROPSTR|GETPROPVAL|NEXTPROP|PARSEPROP|PARSEPROPEX|REMOVE_PROP|SETPROP|UNBLESSPROP|GETSTAT|GETSTATSTR|GETSTATNULLSTR|GETSTATINT|DBREF|PROG|GETSTATFLOAT))(?=\\s)'
+				'match': '(?<=^|\\s)(?i:(ADDPROP|BLESSPROP|ENVPROP|ENVPROPSTR|GETPROP|GETPROPFVAL|GETPROPSTR|GETPROPVAL|NEXTPROP|PARSEPROP|PARSEPROPEX|REMOVE_PROP|SETPROP|UNBLESSPROP|GETSTAT|GETSTATSTR|GETSTATNULLSTR|GETSTATINT|DBREF|PROG|TRIG|LOC|GETSTATFLOAT|DTOS|PMATCH|MATCH))(?=\\s)'
 				'name': 'keyword.database.muf'
 			}
 			{
@@ -129,18 +136,18 @@
 			}
 			{
 				# Compiler directives
-				'match': '^\\s*(?i:(\\$INCLUDE|\\$DEF|\\$PUBDEF|\\$LIBDEF|\\$UNDEF|\\$VERSION|\\$AUTHOR|\\$CLEARDEFS|\\$DEFINE|\\$ECHO|\\$IFCANCALL|\\$IFDEF|\\$ELSE|\\$ENDIF|\\$IFLIB|\\$IFLIBVER|\\$IFNCANCALL|$IFNDEF|\\$IFNLIB|\\$IFNLIBVER|\\$IFNVER|\\$IFVER|\\$LIB-VERSION))(?=\\s)'
+				'match': '^\\s*(?i:(\\$INCLUDE|\\$DEF|\\$PUBDEF|\\$LIBDEF|\\$UNDEF|\\$VERSION|\\$AUTHOR|\\$CLEARDEFS|\\$DEFINE|\\$ECHO|\\$IFCANCALL|\\$IFDEF|\\$IFNDEF|\\$ELSE|\\$ENDIF|\\$IFLIB|\\$IFLIBVER|\\$IFNCANCALL|$IFNDEF|\\$IFNLIB|\\$IFNLIBVER|\\$IFNVER|\\$IFVER|\\$LIB-VERSION))(?=\\s)'
 				'name': 'keyword.other.compiler.muf'
 			}
 			{
 				# Library functions I'm including for convenience
-				'match': '(?<=^|\\s)(?i:(pretty|toint|smatch|\\.tell|\\.otell|tellhere|mlevel|name|location))(?=\\s)'
+				'match': '(?<=^|\\s)(?i:(pretty|toint|tofloat|smatch|\\.tell|\\.otell|tellhere|mlevel|name|location))(?=\\s)'
 				'name': 'support.function.muf'
 			}
 		]
 	'word-def':
 #    'begin': '(^:|\\s:)\\s(\\S+)(\\[)\\s(?:(\\S+)\\s)*(--)\\s(?:(\\S+)\\s)*(\\])'
-		'begin': '(^\\s*:|\\s+:)\\s([^\\s\\[]+)(?:(\\[)\\s(.*?)(--)\\s(.*?)(\\]))?'
+		'begin': '(^\\s*:)\\s([^\\s\\[]+)(?:(\\[)\\s(.*?)(--)\\s(.*?)(\\]))?'
 		'beginCaptures':
 			'1':
 				'name': 'keyword.other.compile-only.muf'
@@ -154,10 +161,16 @@
 				'name': 'punctuation.definition.parameters.muf'
 			'6':
 				'name': 'keyword.other.compile-only.muf'
-		'end': '(;(?i:CODE)?)'
+		'end': '(;\\s+(?i:PUBLIC\\s+([^\\s\\[]+)(\\s+\\$LIBDEF\\s+([^\\s\\[]+))?)?(?i:CODE)?)'
 		'endCaptures':
-			'0':
+			'1':
 				'name': 'keyword.other.compile-only.muf'
+			'2':
+				'name': 'entity.name.function.muf'
+			'3':
+				'name': 'keyword.other.compile-only.muf'
+			'4':
+				'name': 'entity.name.function.muf'
 		'name': 'meta.block.muf'
 		'patterns': [
 			{
