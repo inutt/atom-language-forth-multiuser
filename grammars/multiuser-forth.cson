@@ -94,9 +94,23 @@
 		]
 	'operators':
 		'patterns': [
-				match: '(?:^\\s*|\\s+)(%|\\*|/|\\+|\\+\\+|-|--|<|<=|!=|=|>|>=)(?=\\s+|\\s*$)'
-				name: 'keyword.operator.muf'
+			{
+				'match': '(?:^\\s*|\\s+)(%|\\*|/|\\+|\\+\\+|-|--|<|<=|!=|=|>|>=)(?=\\s+|\\s*$)'
+				'name': 'keyword.operator.muf'
+			}
 		]
+	'variable':
+		'patterns': [
+			{
+				'match': '[\\w]+\\s+(?=[@!])'
+				'name': 'variable.muf'
+			}
+			{
+				'match': '(?<=var|var!)\\s+[\\w]+'
+				'name': 'variable.muf'
+			}
+		]
+
 	'word':
 		'patterns': [
 			{
@@ -136,7 +150,7 @@
 			}
 			{
 				# Compiler directives
-				'match': '^\\s*(?i:(\\$INCLUDE|\\$DEF|\\$PUBDEF|\\$LIBDEF|\\$UNDEF|\\$VERSION|\\$AUTHOR|\\$CLEARDEFS|\\$DEFINE|\\$ECHO|\\$IFCANCALL|\\$IFDEF|\\$IFNDEF|\\$ELSE|\\$ENDIF|\\$IFLIB|\\$IFLIBVER|\\$IFNCANCALL|$IFNDEF|\\$IFNLIB|\\$IFNLIBVER|\\$IFNVER|\\$IFVER|\\$LIB-VERSION))(?=\\s)'
+				'match': '^\\s*(?i:(\\$INCLUDE|\\$DEF|\\$PUBDEF|\\$LIBDEF|\\$UNDEF|\\$VERSION|\\$AUTHOR|\\$CLEARDEFS|\\$DEFINE|\\$ECHO|\\$IFCANCALL|\\$IFDEF|\\$IFNDEF|\\$ELSE|\\$ENDDEF|\\$ENDIF|\\$IFLIB|\\$IFLIBVER|\\$IFNCANCALL|$IFNDEF|\\$IFNLIB|\\$IFNLIBVER|\\$IFNVER|\\$IFVER|\\$LIB-VERSION))(?=\\s)'
 				'name': 'keyword.other.compiler.muf'
 			}
 			{
