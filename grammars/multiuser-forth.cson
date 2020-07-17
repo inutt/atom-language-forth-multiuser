@@ -24,7 +24,7 @@
 		'patterns': [
 			{
 				# Language constants
-				'match': '(?i:(?<=^|\\s)(ME|LOCATION|TRIGGER|CALLER|COMMAND|SORTTYPE_\\w+|REG_\\w+)(?=\\s))'
+				'match': '(?i:(?<=^|\\s)(ME|LOC|TRIG|CALLER|SORTTYPE_\\w+|REG_\\w+|INF)(?=\\s))'
 				'name': 'constant.language.muf'
 			}
 			{
@@ -102,11 +102,11 @@
 	'variable':
 		'patterns': [
 			{
-				'match': '[\\w]+\\s+(?=[@!])'
+				'match': '[\\w_-]+\\s+(?=[@!])'
 				'name': 'variable.muf'
 			}
 			{
-				'match': '(?<=var|var!)\\s+[\\w]+'
+				'match': '(?<=var|var!)\\s+[\\w_-]+'
 				'name': 'variable.muf'
 			}
 		]
