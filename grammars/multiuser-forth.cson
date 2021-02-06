@@ -4,6 +4,8 @@
 'foldingStartMarker': '/\\*\\*|\\{\\s*$'
 'foldingStopMarker': '\\*\\*/|^\\s*\\}'
 'name': 'Multi User Forth'
+'limitLineLength': no
+'maxTokensPerLine': 1000
 'patterns': [
 	{
 		'include': '#muf'
@@ -140,7 +142,7 @@
 			}
 			{
 				# Database functions
-				'match': '(?<=^|\\s)(?i:(ADDPROP|BLESSPROP|ENVPROP|ENVPROPSTR|GETPROP|GETPROPFVAL|GETPROPSTR|GETPROPVAL|NEXTPROP|PARSEPROP|PARSEPROPEX|REMOVE_PROP|SETPROP|UNBLESSPROP|GETSTAT|GETSTATSTR|GETSTATNULLSTR|GETSTATINT|DBREF|PROG|TRIG|LOC|GETSTATFLOAT|DTOS|PMATCH|MATCH|PROPDIR\\?))(?=\\s)'
+				'match': '(?<=^|\\s)(?i:(ADDPROP|BLESSPROP|ENVPROP|ENVPROPSTR|GETPROP|GETPROPFVAL|GETPROPSTR|GETPROPVAL|NEXTPROP|PARSEPROP|PARSEPROPEX|REMOVE_PROP|SETPROP|SETSTAT|UNBLESSPROP|GETSTAT|GETSTATSTR|GETSTATNULLSTR|GETSTATINT|DBREF|PROG|TRIG|LOC|GETSTATFLOAT|DTOS|PMATCH|MATCH|PROPDIR\\?))(?=\\s)'
 				'name': 'keyword.database.muf'
 			}
 			{
@@ -161,7 +163,7 @@
 		]
 	'word-def':
 #    'begin': '(^:|\\s:)\\s(\\S+)(\\[)\\s(?:(\\S+)\\s)*(--)\\s(?:(\\S+)\\s)*(\\])'
-		'begin': '(^\\s*:)\\s([^\\s\\[]+)(?:(\\[)\\s(.*?)(--)\\s(.*?)(\\]))?'
+		'begin': '(^\\s*:)\\s([^\\s\\[]+)(?:(\\[)\\s(.*?)\\s(--)\\s(.*?)\\s(\\]))?'
 		'beginCaptures':
 			'1':
 				'name': 'keyword.other.compile-only.muf'
@@ -175,7 +177,7 @@
 				'name': 'punctuation.definition.parameters.muf'
 			'6':
 				'name': 'keyword.other.compile-only.muf'
-		'end': '(;\\s+(?i:PUBLIC\\s+([^\\s\\[]+)(\\s+\\$LIBDEF\\s+([^\\s\\[]+))?)?(?i:CODE)?)'
+		'end': '(;\\s+(?:(?i:PUBLIC\\s+([^\\s\\[]+)(\\s+\\$LIBDEF\\s+([^\\s\\[]+))?)|(?i:SELFCALL\\s+([^\\s\\[]+)))?(?i:CODE)?)'
 		'endCaptures':
 			'1':
 				'name': 'keyword.other.compile-only.muf'
@@ -184,6 +186,8 @@
 			'3':
 				'name': 'keyword.other.compile-only.muf'
 			'4':
+				'name': 'entity.name.function.muf'
+			'5':
 				'name': 'entity.name.function.muf'
 		'name': 'meta.block.muf'
 		'patterns': [
